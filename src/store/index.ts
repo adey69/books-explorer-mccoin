@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import type { StoreEnhancer } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import type { PersistConfig } from 'redux-persist';
@@ -12,6 +13,11 @@ const bookmarksPersistConfig: PersistConfig<BookmarksState> = {
   storage: AsyncStorage,
 };
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const reactotronEnhancer: StoreEnhancer | undefined = __DEV__
+  ? require('../config/ReactotronConfig').default.createEnhancer()
+  : undefined;
+
 export const store = configureStore({
   reducer: {
     [booksApi.reducerPath]: booksApi.reducer,
@@ -23,6 +29,10 @@ export const store = configureStore({
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }).concat(booksApi.middleware),
+  enhancers: (getDefaultEnhancers) =>
+    reactotronEnhancer
+      ? getDefaultEnhancers().concat(reactotronEnhancer)
+      : getDefaultEnhancers(),
 });
 
 export const persistor = persistStore(store);

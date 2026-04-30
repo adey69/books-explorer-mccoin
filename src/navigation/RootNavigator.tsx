@@ -14,16 +14,20 @@ const RootNavigator = () => {
       <Stack.Navigator
         screenOptions={{
           headerStyle: { backgroundColor: colors.background },
-          headerTitleStyle: { fontWeight: '600', color: colors.text },
+          headerTitleStyle: { fontWeight: '700', color: colors.text, fontSize: 18 },
           headerShadowVisible: false,
           headerTintColor: colors.primary,
         }}
       >
-        <Stack.Screen name="Home" component={HomeScreen} options={{ title: 'Books' }} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="BookDetail"
           component={BookDetailScreen}
-          options={{ title: 'Details' }}
+          options={{ title: 'Details', headerBackTitle: '' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

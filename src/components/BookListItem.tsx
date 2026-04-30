@@ -22,7 +22,7 @@ const BookListItem = memo(function BookListItem({ book, onPress }: Props) {
   return (
     <Pressable
       onPress={handlePress}
-      style={({ pressed }) => [styles.row, pressed ? styles.rowPressed : undefined]}
+      style={({ pressed }) => [styles.card, pressed ? styles.cardPressed : undefined]}
     >
       {cover ? (
         <Image source={{ uri: cover }} style={styles.cover} />
@@ -48,33 +48,34 @@ const BookListItem = memo(function BookListItem({ book, onPress }: Props) {
 });
 
 const styles = StyleSheet.create({
-  row: {
+  card: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    backgroundColor: colors.background,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: colors.border,
+    backgroundColor: colors.surfaceElevated,
+    borderRadius: 16,
+    borderCurve: 'continuous',
+    padding: 12,
+    boxShadow: '0 2px 10px rgba(44, 26, 14, 0.07)',
   },
-  rowPressed: {
-    backgroundColor: colors.surface,
+  cardPressed: {
+    opacity: 0.82,
   },
   cover: {
-    width: 52,
-    height: 76,
-    borderRadius: 6,
+    width: 60,
+    height: 88,
+    borderRadius: 8,
     borderCurve: 'continuous',
     backgroundColor: colors.surface,
   },
   coverFallback: {
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: colors.primaryLight,
   },
   coverFallbackText: {
-    fontSize: 22,
+    fontSize: 24,
     fontWeight: '700',
-    color: colors.textMuted,
+    color: colors.primary,
   },
   body: {
     flex: 1,
@@ -83,8 +84,9 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 15,
-    fontWeight: '600',
+    fontWeight: '700',
     color: colors.text,
+    lineHeight: 21,
   },
   author: {
     fontSize: 13,
@@ -92,14 +94,17 @@ const styles = StyleSheet.create({
   },
   year: {
     fontSize: 12,
-    color: colors.textMuted,
+    color: colors.textFaint,
+    fontWeight: '500',
   },
   dot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: colors.primary,
-    marginLeft: 8,
+    width: 9,
+    height: 9,
+    borderRadius: 5,
+    backgroundColor: colors.accent,
+    marginLeft: 10,
+    alignSelf: 'flex-start',
+    marginTop: 5,
   },
 });
 

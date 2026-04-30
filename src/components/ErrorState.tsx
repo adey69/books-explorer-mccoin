@@ -9,6 +9,9 @@ interface Props {
 
 const ErrorState = ({ message = 'Something went wrong while loading books.', onRetry }: Props) => (
   <View style={styles.container}>
+    <View style={styles.iconWrap}>
+      <Text style={styles.iconText}>!</Text>
+    </View>
     <Text style={styles.title}>Couldn't load books</Text>
     <Text style={styles.message}>{message}</Text>
     {onRetry ? (
@@ -24,11 +27,26 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 24,
+    padding: 32,
+  },
+  iconWrap: {
+    width: 56,
+    height: 56,
+    borderRadius: 18,
+    borderCurve: 'continuous',
+    backgroundColor: colors.primaryLight,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 18,
+  },
+  iconText: {
+    fontSize: 26,
+    fontWeight: '800',
+    color: colors.primary,
   },
   title: {
     fontSize: 18,
-    fontWeight: '600',
+    fontWeight: '700',
     color: colors.text,
     marginBottom: 6,
   },
@@ -36,17 +54,20 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.textMuted,
     textAlign: 'center',
-    marginBottom: 18,
+    marginBottom: 24,
+    lineHeight: 21,
   },
   button: {
     backgroundColor: colors.primary,
-    paddingHorizontal: 18,
-    paddingVertical: 10,
-    borderRadius: 8,
+    paddingHorizontal: 28,
+    paddingVertical: 13,
+    borderRadius: 14,
+    borderCurve: 'continuous',
   },
   buttonText: {
-    color: '#fff',
-    fontWeight: '600',
+    color: '#FFF8F4',
+    fontWeight: '700',
+    fontSize: 15,
   },
 });
 
