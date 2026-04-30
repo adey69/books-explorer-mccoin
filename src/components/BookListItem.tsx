@@ -1,12 +1,12 @@
 import React, { memo, useCallback } from 'react';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
-import type { Book } from '../types';
+import type { BookSummary } from '../types';
 import { colors } from '../theme';
 import { useAppSelector } from '../store/hooks';
 
 interface Props {
-  book: Book;
-  onPress: (book: Book) => void;
+  book: BookSummary;
+  onPress: (book: BookSummary) => void;
 }
 
 const coverFor = (id?: number) =>

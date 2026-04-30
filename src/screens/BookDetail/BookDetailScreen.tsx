@@ -63,15 +63,17 @@ const makeHeaderRight = (isBookmarked: boolean, onPress: () => void) =>
   };
 
 const BookDetailScreen = () => {
-  const { book, isBookmarked, cover, handleToggleBookmark } = useBookDetailScreen();
+  const { summary, detail, isLoading, isBookmarked, cover, handleToggleBookmark } = useBookDetailScreen();
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: book.title,
+      title: summary.title,
       headerRight: makeHeaderRight(isBookmarked, handleToggleBookmark),
     });
-  }, [navigation, handleToggleBookmark, isBookmarked, book.title]);
+  }, [navigation, handleToggleBookmark, isBookmarked, summary.title]);
+
+  const loading = (val: string | undefined) => (isLoading ? '…' : val || 'N/A');
 
   return (
     <ScrollView
@@ -84,37 +86,31 @@ const BookDetailScreen = () => {
           <Image source={{ uri: cover }} style={styles.cover} resizeMode="cover" />
         ) : (
           <View style={[styles.cover, styles.coverFallback]}>
-            <Text style={styles.coverFallbackText}>{book.title.charAt(0).toUpperCase()}</Text>
+            <Text style={styles.coverFallbackText}>{summary.title.charAt(0).toUpperCase()}</Text>
           </View>
         )}
       </View>
 
-      <Text style={styles.title}>{book.title}</Text>
+      <Text style={styles.title}>{summary.title}</Text>
 
       <View style={styles.infoSection}>
-        <InfoRow label="Author(s)" value={book.author_name?.join(', ') || 'Unknown'} />
+        <InfoRow label="Author(s)" value={summary.author_name?.join(', ') || 'Unknown'} />
         <InfoRow
           label="First published"
-          value={book.first_publish_year ? String(book.first_publish_year) : 'N/A'}
+          value={summary.first_publish_year ? String(summary.first_publish_year) : 'N/A'}
         />
-        <InfoRow label="Editions" value={book.edition_count ? String(book.edition_count) : 'N/A'} />
-        <InfoRow
-          label="Pages (median)"
-          value={book.number_of_pages_median ? String(book.number_of_pages_median) : 'N/A'}
-        />
-        <InfoRow label="Publisher" value={book.publisher?.slice(0, 3).join(', ') || 'N/A'} />
-        <InfoRow
-          label="Languages"
-          value={book.language?.slice(0, 5).join(', ').toUpperCase() || 'N/A'}
-        />
-        <CopyableKeyRow value={book.key} />
+        <InfoRow label="Editions" value={loading(detail?.edition_count ? String(detail.edition_count) : undefined)} />
+        <InfoRow label="Pages (median)" value={loading(detail?.number_of_pages_median ? String(detail.number_of_pages_median) : undefined)} />
+        <InfoRow label="Publisher" value={loading(detail?.publisher?.slice(0, 3).join(', '))} />
+        <InfoRow label="Languages" value={loading(detail?.language?.slice(0, 5).join(', ').toUpperCase())} />
+        <CopyableKeyRow value={summary.key} />
       </View>
 
-      {book.subject?.length ? (
+      {detail?.subject?.length ? (
         <View style={styles.subjects}>
           <Text style={styles.subjectsLabel}>Subjects</Text>
           <View style={styles.tagWrap}>
-            {book.subject.slice(0, 12).map((s) => (
+            {detail.subject.slice(0, 12).map((s) => (
               <View key={s} style={styles.tag}>
                 <Text style={styles.tagText}>{s}</Text>
               </View>

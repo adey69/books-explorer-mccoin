@@ -1,8 +1,8 @@
-import type { Book } from '../types';
+import type { BookSummary } from '../types';
 
 export type RootStackParamList = {
   MainTabs: undefined;
-  BookDetail: { book: Book };
+  BookDetail: { book: BookSummary };
 };
 
 export type MainTabParamList = {

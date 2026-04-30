@@ -1,1 +1,1 @@
-export type { Book, SearchResponse } from './book';
+export type { Book, BookSummary, SearchResponse } from './book';

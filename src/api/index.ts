@@ -1,1 +1,1 @@
-export { booksApi, useSearchBooksQuery } from './booksApi';
+export { booksApi, useSearchBooksQuery, useGetBookDetailQuery } from './booksApi';

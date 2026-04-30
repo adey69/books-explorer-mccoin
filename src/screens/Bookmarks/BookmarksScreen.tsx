@@ -21,10 +21,7 @@ const BookmarksScreen = () => {
     <SafeAreaView style={styles.container} edges={['top']}>
       <HomeHeader title="Saved Books" subtitle="Your personal reading list" />
       {books.length === 0 ? (
-        <EmptyState
-          title="No saved books yet"
-          subtitle="Tap Save on any book to add it here."
-        />
+        <EmptyState title="No saved books yet" subtitle="Tap Save on any book to add it here." />
       ) : (
         <FlatList
           data={books}

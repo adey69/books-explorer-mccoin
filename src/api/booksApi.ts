@@ -1,7 +1,9 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { SearchResponse } from '../types';
+import type { Book, SearchResponse } from '../types';
 
-const FIELDS = [
+const LIST_FIELDS = 'key,title,author_name,first_publish_year,cover_i';
+
+const DETAIL_FIELDS = [
   'key',
   'title',
   'author_name',
@@ -21,10 +23,17 @@ export const booksApi = createApi({
     searchBooks: builder.query<SearchResponse, { q: string; limit?: number }>({
       query: ({ q, limit = 25 }) => ({
         url: '/search.json',
-        params: { q, limit, fields: FIELDS },
+        params: { q, limit, fields: LIST_FIELDS },
       }),
+    }),
+    getBookDetail: builder.query<Book | undefined, string>({
+      query: (key) => ({
+        url: '/search.json',
+        params: { q: `key:"${key}"`, limit: 1, fields: DETAIL_FIELDS },
+      }),
+      transformResponse: (response: { docs: Book[] }) => response.docs[0],
     }),
   }),
 });
 
-export const { useSearchBooksQuery } = booksApi;
+export const { useSearchBooksQuery, useGetBookDetailQuery } = booksApi;

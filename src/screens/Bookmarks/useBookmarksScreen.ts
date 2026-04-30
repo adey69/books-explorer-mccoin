@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useAppSelector } from '../../store/hooks';
 import type { RootStackParamList } from '../../navigation/types';
-import type { Book } from '../../types';
+import type { BookSummary } from '../../types';
 
 type BookmarksNav = NativeStackNavigationProp<RootStackParamList, 'MainTabs'>;
 
@@ -17,7 +17,7 @@ export const useBookmarksScreen = () => {
   );
 
   const handleBookPress = useCallback(
-    (book: Book) => navigation.navigate('BookDetail', { book }),
+    (book: BookSummary) => navigation.navigate('BookDetail', { book }),
     [navigation],
   );
 

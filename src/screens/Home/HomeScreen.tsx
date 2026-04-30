@@ -2,11 +2,11 @@ import React, { useCallback } from 'react';
 import { FlatList, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BookListItem, LoadingState, ErrorState, EmptyState, SearchBar, HomeHeader } from '../../components';
-import type { Book } from '../../types';
+import type { BookSummary } from '../../types';
 import { useHomeScreen } from './useHomeScreen';
 import { styles } from './styles';
 
-const keyExtractor = (item: Book) => item.key;
+const keyExtractor = (item: BookSummary) => item.key;
 const ItemSeparator = () => <View style={styles.separator} />;
 
 const HomeScreen = () => {
@@ -14,7 +14,7 @@ const HomeScreen = () => {
     useHomeScreen();
 
   const renderItem = useCallback(
-    ({ item }: { item: Book }) => <BookListItem book={item} onPress={handleBookPress} />,
+    ({ item }: { item: BookSummary }) => <BookListItem book={item} onPress={handleBookPress} />,
     [handleBookPress],
   );
 
