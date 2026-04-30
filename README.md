@@ -2,8 +2,9 @@
 
 A React Native app that searches the [Open Library](https://openlibrary.org/developers/api) catalog, lets you explore book details, and saves your favourites across sessions. Built as a take-home assessment for McCoin Virtual Assets.
 
-> **Screenshot / GIF** — add a screen recording or screenshot here before submission.
-
+> **Screenshots**
+<img width="1320" height="2868" alt="Simulator Screenshot - iPhone 17 Pro Max - 2026-05-01 at 01 10 32" src="https://github.com/user-attachments/assets/d666a73d-dcef-44e5-ab7a-08fd7abe17a7" />
+<img width="1320" height="2868" alt="Simulator Screenshot - iPhone 17 Pro Max - 2026-05-01 at 01 10 24" src="https://github.com/user-attachments/assets/f378f168-f13b-4c0f-94b9-2ac54b3bcc76" />
 ---
 
 ## Stack
