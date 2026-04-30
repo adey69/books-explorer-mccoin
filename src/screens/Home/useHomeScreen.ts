@@ -6,7 +6,7 @@ import { useDebounce } from '../../hooks/useDebounce';
 import type { RootStackParamList } from '../../navigation/types';
 import type { Book } from '../../types/book';
 
-type HomeNav = NativeStackNavigationProp<RootStackParamList, 'Home'>;
+type HomeNav = NativeStackNavigationProp<RootStackParamList>;
 
 const FALLBACK_QUERY = 'bestseller';
 

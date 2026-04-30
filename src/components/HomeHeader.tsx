@@ -1,16 +1,30 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../theme/colors';
+import { colors } from '../theme';
 
-const HomeHeader = () => (
-  <View style={styles.container}>
-    <View style={styles.titleRow}>
-      <Text style={styles.titleAccent}>Book</Text>
-      <Text style={styles.titleMain}>Explorer</Text>
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const HomeHeader = ({
+  title = 'BookExplorer',
+  subtitle = 'Discover your next great read',
+}: Props) => {
+  const spaceIndex = title.indexOf(' ');
+  const accent = spaceIndex === -1 ? title.slice(0, 4) : title.slice(0, spaceIndex);
+  const rest = spaceIndex === -1 ? title.slice(4) : title.slice(spaceIndex);
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.titleRow}>
+        <Text style={styles.titleAccent}>{accent}</Text>
+        <Text style={styles.titleMain}>{rest}</Text>
+      </View>
+      <Text style={styles.subtitle}>{subtitle}</Text>
     </View>
-    <Text style={styles.subtitle}>Discover your next great read</Text>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

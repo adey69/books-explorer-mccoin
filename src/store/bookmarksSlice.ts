@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import type { Book } from '../types/book';
+import type { Book } from '../types';
 
 export interface BookmarksState {
   items: Record<string, Book>;

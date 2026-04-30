@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { SearchResponse } from '../types/book';
+import type { SearchResponse } from '../types';
 
 const FIELDS = [
   'key',

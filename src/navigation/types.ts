@@ -1,6 +1,11 @@
-import type { Book } from '../types/book';
+import type { Book } from '../types';
 
 export type RootStackParamList = {
-  Home: undefined;
+  MainTabs: undefined;
   BookDetail: { book: Book };
+};
+
+export type MainTabParamList = {
+  Home: undefined;
+  Bookmarks: undefined;
 };
